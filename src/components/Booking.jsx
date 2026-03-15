@@ -18,7 +18,7 @@ const PhoneIcon = () => (
   </svg>
 );
 
-function generateICS(date, time, service) {
+function getGoogleCalendarUrl(date, time, service) {
   const [hours, minutes] = time.split(':');
   const start = new Date(date);
   start.setHours(parseInt(hours), parseInt(minutes), 0);
@@ -27,26 +27,15 @@ function generateICS(date, time, service) {
 
   const fmt = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'BEGIN:VEVENT',
-    `DTSTART:${fmt(start)}`,
-    `DTEND:${fmt(end)}`,
-    `SUMMARY:${service} - Tal Cohen Barbershop`,
-    'LOCATION:קיבוץ גשר הזיו, רחוב נתיב היערה',
-    'DESCRIPTION:תור אצל טל כהן - מספרה',
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ].join('\r\n');
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `${service} - Tal Cohen Barbershop`,
+    dates: `${fmt(start)}/${fmt(end)}`,
+    details: 'תור אצל טל כהן - מספרה\nטלפון: 058-730-6008',
+    location: 'קיבוץ גשר הזיו, רחוב נתיב היערה',
+  });
 
-  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'tal-cohen-appointment.ics';
-  a.click();
-  URL.revokeObjectURL(url);
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
 export default function Booking() {
@@ -70,10 +59,6 @@ export default function Booking() {
   const handleSubmit = () => {
     if (!name || !phone || !service || !date || !time) return;
     setSubmitted(true);
-  };
-
-  const handleCalendar = () => {
-    generateICS(date, time, service);
   };
 
   const handleClose = () => {
@@ -135,7 +120,10 @@ export default function Booking() {
             </select>
           </div>
           <div className="form-row">
-            <input className="form-input" type="date" value={date} onChange={e => setDate(e.target.value)} />
+            <div className="form-date-wrap">
+              <label className="form-date-label">{date ? new Date(date).toLocaleDateString('he-IL') : 'בחר תאריך'}</label>
+              <input className="form-input form-date-input" type="date" value={date} onChange={e => setDate(e.target.value)} />
+            </div>
             <select className="form-input" value={time} onChange={e => setTime(e.target.value)}>
               <option value="" disabled>בחר שעה</option>
               <option>09:00</option>
@@ -186,12 +174,17 @@ export default function Booking() {
               <span>{new Date(date).toLocaleDateString('he-IL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
               <span>בשעה {time}</span>
             </div>
-            <button className="modal-cal-btn" onClick={handleCalendar}>
+            <a
+              href={getGoogleCalendarUrl(date, time, service)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-cal-btn"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
-              שמור ביומן
-            </button>
+              הוסף ליומן Google
+            </a>
             <button className="modal-close-btn" onClick={handleClose}>סגור</button>
           </div>
         </div>
