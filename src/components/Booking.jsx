@@ -48,7 +48,7 @@ export default function Booking() {
           <div className="booking-info">
             <div className="booking-info-item">
               <div className="booking-info-icon"><LocationIcon /></div>
-              <a href="https://maps.google.com/?q=Gesher+Haziv+Nativ+Hayaara" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>קיבוץ גשר הזיו, רחוב נתיב היערה</a>
+              <a href="https://maps.google.com/?q=Gesher+Haziv+Nativ+Hayaara" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', fontWeight: 700, textDecoration: 'underline', textUnderlineOffset: '3px' }}>קיבוץ גשר הזיו, רחוב נתיב היערה</a>
             </div>
             <div className="booking-info-item">
               <div className="booking-info-icon"><ClockIcon /></div>
