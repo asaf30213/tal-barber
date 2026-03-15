@@ -800,6 +800,87 @@ button { cursor: pointer; font-family: inherit; }
   margin: 0 auto;
 }
 
+/* ============ MODAL ============ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 48px 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+
+.modal-cal-btn {
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg-dark);
+  border: none;
+  padding: 14px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-bottom: 10px;
+}
+
+.modal-cal-btn:hover { opacity: 0.9; }
+
+.modal-close-btn {
+  width: 100%;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 12px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.modal-close-btn:hover { border-color: var(--accent); }
+
 /* ============ SCROLL ANIMATIONS ============ */
 .reveal {
   opacity: 0;
