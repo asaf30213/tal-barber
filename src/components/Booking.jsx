@@ -56,7 +56,7 @@ export default function Booking() {
             </div>
             <div className="booking-info-item">
               <div className="booking-info-icon"><PhoneIcon /></div>
-              <span style={{ direction: 'ltr' }}>050-0000000</span>
+              <a href="tel:0587306008" style={{ direction: 'ltr', color: 'inherit' }}>058-730-6008</a>
             </div>
           </div>
         </div>
@@ -88,12 +88,12 @@ export default function Booking() {
             </select>
           </div>
           <button className="form-submit">קביעת תור</button>
-          <button className="form-wa">
+          <a href="https://wa.me/972587306008?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8" target="_blank" rel="noopener noreferrer" className="form-wa">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 1a7 7 0 00-6.07 10.47L1 15l3.63-.94A7 7 0 108 1zm0 12.6a5.6 5.6 0 01-2.85-.78l-.2-.12-2.16.56.57-2.1-.13-.22A5.6 5.6 0 118 13.6z"/>
             </svg>
             שלח הודעה בוואטסאפ
-          </button>
+          </a>
         </div>
       </div>
     </section>
