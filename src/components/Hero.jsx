@@ -1,6 +1,15 @@
 export default function Hero() {
   return (
     <section className="hero">
+      <video
+        className="hero-video"
+        src={`${import.meta.env.BASE_URL}hero-video.mp4`}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="hero-overlay" />
       <div className="hero-content">
         <div className="hero-eyebrow">
           <div className="hero-eyebrow-line" />
